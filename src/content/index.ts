@@ -14,7 +14,6 @@ import { section as s13 } from "./sections/13-mcp";
 import { section as s14 } from "./sections/14-variables-environnement";
 import { section as s15 } from "./sections/15-commandes-slash";
 import { section as s16 } from "./sections/16-checklist-optimisation";
-import { section as s17 } from "./sections/17-sources";
 
 export interface ContentSection {
   slug: string;
@@ -39,7 +38,6 @@ export const allSections: ContentSection[] = [
   s14,
   s15,
   s16,
-  s17,
 ];
 
 export function getContentBySlug(slug: string): ContentSection | undefined {
