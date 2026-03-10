@@ -2,10 +2,10 @@ export const section = {
   slug: "architecture-configuration",
   title: "Architecture globale de configuration",
   content: `
-### Hierarchie des fichiers (priorite decroissante)
+### Hiérarchie des fichiers (priorité décroissante)
 
 \`\`\`
-PRIORITE LA PLUS HAUTE
+PRIORITÉ LA PLUS HAUTE
 |
 +-- Managed settings (entreprise)
 |   +-- Serveur (console admin Claude.ai)
@@ -16,30 +16,30 @@ PRIORITE LA PLUS HAUTE
 +-- User settings (personnel, global)
 |   +-- ~/.claude/settings.json
 |
-+-- Project settings (partage en git)
++-- Project settings (partagé en git)
 |   +-- .claude/settings.json
 |
 +-- Local settings (personnel, pas en git)
 |   +-- .claude/settings.local.json
 |
 +-- Legacy config
-    +-- ~/.claude.json (preferences, OAuth, caches)
+    +-- ~/.claude.json (préférences, OAuth, caches)
 |
-PRIORITE LA PLUS BASSE
+PRIORITÉ LA PLUS BASSE
 \`\`\`
 
-**Regle critique** : les settings de niveau superieur **ne peuvent pas** etre surchargees par les niveaux inferieurs. Si managed-settings.json bloque \`rm -rf\`, aucun fichier utilisateur ne peut l'autoriser.
+**Règle critique** : les settings de niveau supérieur **ne peuvent pas** être surchargées par les niveaux inférieurs. Si managed-settings.json bloque \`rm -rf\`, aucun fichier utilisateur ne peut l'autoriser.
 
-### Structure de dossier projet optimisee
+### Structure de dossier projet optimisée
 
 \`\`\`
 mon-projet/
-+-- CLAUDE.md                          # Memoire projet (charge a chaque session)
-+-- .mcp.json                          # Configuration MCP (versionne)
++-- CLAUDE.md                          # Mémoire projet (chargé à chaque session)
++-- .mcp.json                          # Configuration MCP (versionné)
 +-- .claude/
-    +-- settings.json                  # Hooks, permissions, env (versionne)
+    +-- settings.json                  # Hooks, permissions, env (versionné)
     +-- settings.local.json            # Overrides perso (gitignored)
-    +-- agents/                        # Sub-agents personnalises
+    +-- agents/                        # Sub-agents personnalisés
     |   +-- code-reviewer.md
     |   +-- researcher.md
     |   +-- qa-tester.md
@@ -48,7 +48,7 @@ mon-projet/
     |   |   +-- SKILL.md
     |   +-- deploy-workflow/
     |       +-- SKILL.md
-    +-- rules/                         # Regles modulaires
+    +-- rules/                         # Règles modulaires
         +-- code-style.md
         +-- git-workflow.md
         +-- security.md
@@ -63,7 +63,7 @@ mon-projet/
 +-- settings.local.json                # Overrides locaux
 +-- agents/                            # Agents perso (disponibles partout)
 +-- skills/                            # Skills perso (disponibles partout)
-+-- rules/                             # Regles globales
++-- rules/                             # Règles globales
 +-- todos/                             # Fichiers TodoWrite
 \`\`\`
 `,

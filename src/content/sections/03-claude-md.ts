@@ -4,24 +4,24 @@ export const section = {
   content: `
 ### Principe fondamental
 
-CLAUDE.md est le fichier que Claude lit **au debut de chaque session**. C'est la memoire persistante qui donne le contexte que Claude ne peut pas inferer du code seul.
+CLAUDE.md est le fichier que Claude lit **au début de chaque session**. C'est la mémoire persistante qui donne le contexte que Claude ne peut pas inférer du code seul.
 
-### Hierarchie de chargement
+### Hiérarchie de chargement
 
 \`\`\`
-1. ~/.claude/CLAUDE.md           -> Charge TOUJOURS (global)
-2. /projet/CLAUDE.md             -> Charge pour ce projet
-3. /projet/sous-dossier/CLAUDE.md -> Charge a la demande (quand Claude travaille dans ce dossier)
+1. ~/.claude/CLAUDE.md           -> Chargé TOUJOURS (global)
+2. /projet/CLAUDE.md             -> Chargé pour ce projet
+3. /projet/sous-dossier/CLAUDE.md -> Chargé à la demande (quand Claude travaille dans ce dossier)
 \`\`\`
 
-Pour les monorepos, chaque sous-projet peut avoir son propre CLAUDE.md. Claude les merge automatiquement via le mecanisme ancetre + descendant.
+Pour les monorepos, chaque sous-projet peut avoir son propre CLAUDE.md. Claude les merge automatiquement via le mécanisme ancêtre + descendant.
 
 ### Limites connues (Mars 2026)
 
-- Les LLM frontier suivent ~150-200 instructions de maniere fiable
-- Le system prompt de Claude Code contient deja ~50 instructions internes
-- **Objectif : garder CLAUDE.md sous 200 lignes** (60 lignes = ideal selon HumanLayer)
-- Plus le fichier est long, plus Claude ignore les instructions **uniformement** (pas juste les dernieres)
+- Les LLM frontier suivent ~150-200 instructions de manière fiable
+- Le system prompt de Claude Code contient déjà ~50 instructions internes
+- **Objectif : garder CLAUDE.md sous 200 lignes** (60 lignes = idéal selon HumanLayer)
+- Plus le fichier est long, plus Claude ignore les instructions **uniformément** (pas juste les dernières)
 
 ### Structure optimale — Le framework WHAT/WHY/HOW
 
@@ -29,7 +29,7 @@ Pour les monorepos, chaque sous-projet peut avoir son propre CLAUDE.md. Claude l
 # Nom du Projet
 
 ## WHAT — Contexte Projet
-Description courte du projet et de sa raison d'etre.
+Description courte du projet et de sa raison d'être.
 
 ## Stack technique
 - TypeScript / Next.js 15 / App Router
@@ -49,9 +49,9 @@ src/
 - Lint: \\\`npm run lint\\\`
 - Type-check: \\\`npx tsc --noEmit\\\`
 
-## Regles de code
+## Règles de code
 - Composants fonctionnels React uniquement
-- Server components par defaut
+- Server components par défaut
 - Tailwind utilities, jamais de CSS custom
 - Destructuring des imports
 
@@ -67,14 +67,14 @@ src/
 - Commandes build/test/lint (Claude ne peut pas les deviner)
 - Conventions de code qui ne sont PAS dans un linter
 - Architecture et structure du projet
-- Workflow git specifique
+- Workflow git spécifique
 - Patterns custom du projet
 
 **Ce qui NE va PAS dans CLAUDE.md :**
-- Regles de style que le linter gere deja -> utiliser un hook post-edit
-- Documentation detaillee -> utiliser des Skills
-- Snippets de code -> utiliser des references \`@file:line\`
-- Workflows specifiques occasionnels -> utiliser des Skills
+- Règles de style que le linter gère déjà -> utiliser un hook post-edit
+- Documentation détaillée -> utiliser des Skills
+- Snippets de code -> utiliser des références \`@file:line\`
+- Workflows spécifiques occasionnels -> utiliser des Skills
 - Instructions que Claude suivrait naturellement
 
 **Syntaxe d'import** — Pour modulariser :
@@ -84,16 +84,16 @@ Voir @docs/api-guide.md pour les conventions API
 Instructions perso : @~/.claude/my-project-instructions.md
 \`\`\`
 
-### Anti-patterns a eviter
+### Anti-patterns à éviter
 
 \`\`\`markdown
 # MAUVAIS — Trop vague
-Ecris du bon code propre et bien teste.
+Écris du bon code propre et bien testé.
 
-# BON — Specifique et actionnable
+# BON — Spécifique et actionnable
 Chaque fonction publique DOIT avoir un test unitaire.
 Les erreurs API retournent { error: string, code: number }.
-Timeout par defaut : 5000ms pour les appels externes.
+Timeout par défaut : 5000ms pour les appels externes.
 \`\`\`
 
 \`\`\`markdown
@@ -102,7 +102,7 @@ Voici comment on fait un composant :
 \`\`\`
 
 \`\`\`markdown
-# BON — Reference au fichier
+# BON — Référence au fichier
 Pattern composant : voir @src/components/Button.tsx
 \`\`\`
 
@@ -112,14 +112,14 @@ Pattern composant : voir @src/components/Button.tsx
 /init
 \`\`\`
 
-Analyse le codebase, detecte build systems, test frameworks, et genere un CLAUDE.md de base. **Toujours raffiner apres generation.**
+Analyse le codebase, détecte build systems, test frameworks, et génère un CLAUDE.md de base. **Toujours raffiner après génération.**
 
 ### Maintenance continue
 
 Traiter CLAUDE.md comme du code :
-- Review quand Claude fait des erreurs -> la regle manque ou est mal formulee
-- Pruner regulierement -> si retirer une ligne ne change pas le comportement de Claude, la supprimer
+- Review quand Claude fait des erreurs -> la règle manque ou est mal formulée
+- Pruner régulièrement -> si retirer une ligne ne change pas le comportement de Claude, la supprimer
 - Tester les changements en observant le comportement de Claude
-- Ajouter emphase si necessaire : \`IMPORTANT:\`, \`YOU MUST\`, \`NEVER\`
+- Ajouter emphase si nécessaire : \`IMPORTANT:\`, \`YOU MUST\`, \`NEVER\`
 `,
 };

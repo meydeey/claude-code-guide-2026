@@ -1,25 +1,25 @@
 export const section = {
   slug: "configuration-generale",
-  title: "Configuration generale",
+  title: "Configuration générale",
   content: `
-### Modele et Effort
+### Modèle et Effort
 
-Claude Code supporte plusieurs modeles avec des niveaux d'effort adaptatifs :
+Claude Code supporte plusieurs modèles avec des niveaux d'effort adaptatifs :
 
-| Modele | Usage optimal | Contexte |
+| Modèle | Usage optimal | Contexte |
 |--------|--------------|----------|
 | **Opus 4.6** | Raisonnement complexe, architecture, planning | 1M tokens (beta) |
 | **Sonnet 4.6** | Coding quotidien, implementation, refactoring | 1M tokens (beta) |
-| **Haiku 4.5** | Taches rapides, hooks prompt, evaluations | Standard |
-| **opusplan** | Hybrid : Opus pour plan, Sonnet pour execution | Auto-switch |
+| **Haiku 4.5** | Tâches rapides, hooks prompt, évaluations | Standard |
+| **opusplan** | Hybrid : Opus pour plan, Sonnet pour exécution | Auto-switch |
 
 **Effort levels** (Opus 4.6 & Sonnet 4.6) :
-- \`low\` : taches simples, rapide et economique
-- \`medium\` : defaut pour Max/Team sur Opus
-- \`high\` : raisonnement profond, taches complexes
+- \`low\` : tâches simples, rapide et économique
+- \`medium\` : défaut pour Max/Team sur Opus
+- \`high\` : raisonnement profond, tâches complexes
 
 \`\`\`bash
-# Changer le modele en session
+# Changer le modèle en session
 /model
 
 # Ajuster l'effort via variable d'env
@@ -31,7 +31,7 @@ export CLAUDE_CODE_EFFORT_LEVEL=high
 
 ### Thinking Mode
 
-Le mode thinking (raisonnement etendu) est critique pour la qualite :
+Le mode thinking (raisonnement étendu) est critique pour la qualité :
 
 \`\`\`json
 // Dans settings.json
@@ -40,7 +40,7 @@ Le mode thinking (raisonnement etendu) est critique pour la qualite :
 
 Raccourci en session : \`Option+T\` (Mac) pour toggle.
 
-### Status Line personnalisee
+### Status Line personnalisée
 
 Affiche des infos utiles en bas du terminal :
 

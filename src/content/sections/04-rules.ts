@@ -4,27 +4,27 @@ export const section = {
   content: `
 ### Concept
 
-Les Rules sont des fichiers markdown dans \`.claude/rules/\` qui permettent de **decouper les instructions** au lieu de tout mettre dans CLAUDE.md.
+Les Rules sont des fichiers markdown dans \`.claude/rules/\` qui permettent de **découper les instructions** au lieu de tout mettre dans CLAUDE.md.
 
-### Pourquoi utiliser Rules plutot que CLAUDE.md
+### Pourquoi utiliser Rules plutôt que CLAUDE.md
 
 | CLAUDE.md | Rules |
 |-----------|-------|
-| Charge a chaque session | Charge a chaque session |
-| Un seul fichier | Multiples fichiers thematiques |
+| Chargé à chaque session | Chargé à chaque session |
+| Un seul fichier | Multiples fichiers thématiques |
 | Risque de devenir trop long | Organisation modulaire |
-| Versionne en git | Versionne en git |
+| Versionné en git | Versionné en git |
 
-Les rules sont chargees **en plus** de CLAUDE.md. Elles permettent une organisation thematique sans gonfler le fichier principal.
+Les rules sont chargées **en plus** de CLAUDE.md. Elles permettent une organisation thématique sans gonfler le fichier principal.
 
-### Structure recommandee
+### Structure recommandée
 
 \`\`\`
 .claude/rules/
 +-- code-style.md          # Conventions de code
-+-- git-workflow.md         # Regles git et commits
++-- git-workflow.md         # Règles git et commits
 +-- testing.md              # Standards de test
-+-- security.md             # Regles de securite
++-- security.md             # Règles de sécurité
 +-- architecture.md         # Patterns d'architecture
 \`\`\`
 
@@ -32,25 +32,25 @@ Les rules sont chargees **en plus** de CLAUDE.md. Elles permettent une organisat
 
 \`\`\`markdown
 <!-- .claude/rules/git-workflow.md -->
-# Regles Git
+# Règles Git
 
 - Commits conventionnels obligatoires : feat:, fix:, chore:, docs:, refactor:
 - Un commit = un changement logique, jamais de commits fourre-tout
 - Jamais de push direct sur main ou master
-- Toujours creer une feature branch
-- Message de commit en anglais, max 72 caracteres pour le titre
-- Body du commit optionnel mais recommande pour les changements complexes
+- Toujours créer une feature branch
+- Message de commit en anglais, max 72 caractères pour le titre
+- Body du commit optionnel mais recommandé pour les changements complexes
 \`\`\`
 
-### Difference avec Skills
+### Différence avec Skills
 
 | Rules | Skills |
 |-------|--------|
-| Chargees automatiquement a chaque session | Chargees a la demande ou auto-detectees |
-| Instructions generales always-on | Workflows specifiques |
-| Courtes et directives | Peuvent etre detaillees |
+| Chargées automatiquement à chaque session | Chargées à la demande ou auto-détectées |
+| Instructions générales always-on | Workflows spécifiques |
+| Courtes et directives | Peuvent être détaillées |
 | Pas de frontmatter YAML | Frontmatter YAML obligatoire |
 
-**Regle de base** : si l'instruction s'applique a quasi toutes les taches -> Rule. Si c'est un workflow specifique -> Skill.
+**Règle de base** : si l'instruction s'applique à quasi toutes les tâches -> Rule. Si c'est un workflow spécifique -> Skill.
 `,
 };

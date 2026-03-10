@@ -2,16 +2,16 @@ export const section = {
   slug: "settings",
   title: "Settings.json + Settings.local.json",
   content: `
-### Difference fondamentale
+### Différence fondamentale
 
 | settings.json | settings.local.json |
 |---------------|---------------------|
-| Versionne en git | Gitignored automatiquement |
-| Partage avec l'equipe | Personnel uniquement |
+| Versionné en git | Gitignoré automatiquement |
+| Partagé avec l'équipe | Personnel uniquement |
 | Permissions communes | API keys, overrides locaux |
-| Hooks projet | Hooks experimentaux |
+| Hooks projet | Hooks expérimentaux |
 
-### Reference complete settings.json
+### Référence complète settings.json
 
 \`\`\`json
 {
@@ -88,16 +88,16 @@ export const section = {
 
 | Mode | Comportement |
 |------|-------------|
-| \`default\` | Demande permission a la premiere utilisation de chaque outil |
-| \`acceptEdits\` | Auto-accepte les editions de fichiers |
-| \`bypassPermissions\` | Bypass total (necessite \`--dangerously-skip-permissions\`) |
-| \`plan\` | Mode plan uniquement, pas d'execution |
+| \`default\` | Demande permission à la première utilisation de chaque outil |
+| \`acceptEdits\` | Auto-accepte les éditions de fichiers |
+| \`bypassPermissions\` | Bypass total (nécessite \`--dangerously-skip-permissions\`) |
+| \`plan\` | Mode plan uniquement, pas d'exécution |
 
-### Syntaxe des regles de permission
+### Syntaxe des règles de permission
 
 \`\`\`
 Tool                    # Autorise l'outil globalement
-Tool(pattern)           # Autorise avec un pattern specifique
+Tool(pattern)           # Autorise avec un pattern spécifique
 Tool(pattern/*)         # Wildcard
 \`\`\`
 
@@ -110,14 +110,14 @@ Tool(pattern/*)         # Wildcard
     "Bash(git *)",               // Toute commande git
     "Read(src/**)",              // Lecture dans src/
     "Edit(src/**/*.ts)",         // Edition des .ts dans src/
-    "Write(src/**/*.ts)",        // Ecriture des .ts dans src/
+    "Write(src/**/*.ts)",        // Écriture des .ts dans src/
     "WebFetch(api.example.com)", // Fetch depuis un domaine
     "MCP(github)",               // Serveur MCP github
-    "Agent(code-reviewer)"       // Agent specifique
+    "Agent(code-reviewer)"       // Agent spécifique
   ],
   "deny": [
     "Read(.env*)",               // Bloquer les fichiers .env
-    "Edit(package-lock.json)",   // Bloquer l'edition du lock
+    "Edit(package-lock.json)",   // Bloquer l'édition du lock
     "Bash(curl * | bash)"        // Bloquer pipe vers bash
   ]
 }
@@ -145,17 +145,17 @@ Tool(pattern/*)         # Wildcard
 
 ### Schema JSON pour autocompletion
 
-Ajouter la premiere ligne dans settings.json :
+Ajouter la première ligne dans settings.json :
 \`\`\`json
 {
   "$schema": "https://json-schema.org/claude-code-settings.json"
 }
 \`\`\`
 
-Active l'autocompletion et la validation inline dans VS Code, Cursor, et tout editeur supportant les JSON schemas.
+Active l'autocomplétion et la validation inline dans VS Code, Cursor, et tout éditeur supportant les JSON schemas.
 
 ### Backups automatiques
 
-Claude Code cree automatiquement des backups horodates des fichiers de configuration et conserve les 5 plus recents.
+Claude Code crée automatiquement des backups horodatés des fichiers de configuration et conserve les 5 plus récents.
 `,
 };

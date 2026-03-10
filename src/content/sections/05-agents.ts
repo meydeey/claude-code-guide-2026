@@ -4,26 +4,26 @@ export const section = {
   content: `
 ### Concept
 
-Un agent (sub-agent) est une instance Claude separee qui travaille dans son propre contexte window. Le principal agent peut deleguer des taches a un sub-agent sans polluer sa propre memoire de travail.
+Un agent (sub-agent) est une instance Claude séparée qui travaille dans son propre contexte window. Le principal agent peut déléguer des tâches à un sub-agent sans polluer sa propre mémoire de travail.
 
 ### Pourquoi utiliser des agents
 
-- **Isolation du contexte** : le travail lourd (analyse de 50 fichiers) se fait dans un contexte separe
-- **Specialisation** : chaque agent a ses propres instructions systeme
-- **Parallelisation** : via Agent Teams, plusieurs agents travaillent simultanement
+- **Isolation du contexte** : le travail lourd (analyse de 50 fichiers) se fait dans un contexte séparé
+- **Spécialisation** : chaque agent a ses propres instructions système
+- **Parallélisation** : via Agent Teams, plusieurs agents travaillent simultanément
 - **Protection** : le contexte du main session reste propre
 
-### Creation d'un agent
+### Création d'un agent
 
 \`\`\`bash
 # Interactif
 /agents
 
-# Ou creer le fichier manuellement
+# Ou créer le fichier manuellement
 \`\`\`
 
 **Emplacement :**
-- \`.claude/agents/\` — agents projet (versionnes)
+- \`.claude/agents/\` — agents projet (versionnés)
 - \`~/.claude/agents/\` — agents personnels (disponibles partout)
 
 ### Format du fichier agent
@@ -46,22 +46,22 @@ tools:
 
 Tu es un code reviewer senior. Ton travail est de :
 
-1. Analyser les fichiers modifies recemment
-2. Verifier la qualite du code (lisibilite, maintenabilite)
-3. Identifier les problemes de securite potentiels
-4. Verifier que les tests existent et sont pertinents
-5. Suggerer des ameliorations concretes
+1. Analyser les fichiers modifiés récemment
+2. Vérifier la qualité du code (lisibilité, maintenabilité)
+3. Identifier les problèmes de sécurité potentiels
+4. Vérifier que les tests existent et sont pertinents
+5. Suggérer des améliorations concrètes
 
 ## Standards
 - Fonctions < 50 lignes
-- Complexite cyclomatique < 10
+- Complexité cyclomatique < 10
 - Pas de any en TypeScript
 - Pas de console.log en production
 
 ## Output
-Produire un rapport structure avec :
-- Bloquants (a corriger avant merge)
-- Warnings (a considerer)
+Produire un rapport structuré avec :
+- Bloquants (à corriger avant merge)
+- Warnings (à considérer)
 - Suggestions (nice to have)
 \`\`\`
 
@@ -71,8 +71,8 @@ Produire un rapport structure avec :
 |-------|-------------|
 | \`name\` | Nom de l'agent (devient la commande slash) |
 | \`description\` | Quand utiliser cet agent (crucial pour l'auto-detection) |
-| \`model\` | Modele a utiliser (opus, sonnet, haiku) |
-| \`tools\` | Liste des outils autorises |
+| \`model\` | Modèle à utiliser (opus, sonnet, haiku) |
+| \`tools\` | Liste des outils autorisés |
 | \`allowedMcpServers\` | Serveurs MCP accessibles |
 | \`maxTurns\` | Nombre max d'interactions |
 
@@ -86,19 +86,19 @@ tools:
   - Bash(npm *)    # Uniquement les commandes npm
 \`\`\`
 
-Ne PAS donner \`Write\` ou \`Edit\` a un agent de review — il doit analyser, pas modifier.
+Ne PAS donner \`Write\` ou \`Edit\` à un agent de review — il doit analyser, pas modifier.
 
-### Agent Teams (experimental)
+### Agent Teams (expérimental)
 
 Activation via variable d'environnement :
 \`\`\`bash
 export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
 \`\`\`
 
-Permet a une session de coordonner plusieurs agents travaillant en parallele, chacun avec son propre contexte independant.
+Permet à une session de coordonner plusieurs agents travaillant en parallèle, chacun avec son propre contexte indépendant.
 
-### Erreur frequente
+### Erreur fréquente
 
-**Le contenu du fichier agent est un SYSTEM PROMPT, pas un user prompt.** C'est l'erreur n°1 quand on cree des agents. Le fichier definit le comportement et l'identite de l'agent, pas la tache a accomplir.
+**Le contenu du fichier agent est un SYSTEM PROMPT, pas un user prompt.** C'est l'erreur n°1 quand on crée des agents. Le fichier définit le comportement et l'identité de l'agent, pas la tâche à accomplir.
 `,
 };

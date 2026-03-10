@@ -4,30 +4,30 @@ export const section = {
   content: `
 ### Concept fondamental
 
-Les Hooks sont des **declencheurs deterministes** qui s'executent a des points precis du cycle de vie de Claude Code. Contrairement aux instructions CLAUDE.md qui sont des suggestions que le modele peut ignorer, les hooks **garantissent l'execution** a chaque fois.
+Les Hooks sont des **déclencheurs déterministes** qui s'exécutent à des points précis du cycle de vie de Claude Code. Contrairement aux instructions CLAUDE.md qui sont des suggestions que le modèle peut ignorer, les hooks **garantissent l'exécution** à chaque fois.
 
-### Les 14 evenements (Mars 2026)
+### Les 14 événements (Mars 2026)
 
-| Evenement | Quand il se declenche | Usage typique |
+| Événement | Quand il se déclenche | Usage typique |
 |-----------|----------------------|---------------|
-| **SessionStart** | Demarrage, reprise, clear, compact | Injection de contexte, variables d'environnement |
+| **SessionStart** | Démarrage, reprise, clear, compact | Injection de contexte, variables d'environnement |
 | **UserPromptSubmit** | Soumission du prompt utilisateur (avant traitement) | Validation, logging, enrichissement |
-| **PreToolUse** | Avant l'execution d'un outil | Blocage de commandes dangereuses, validation |
-| **PostToolUse** | Apres l'execution reussie d'un outil | Formatting, linting, logging |
-| **PostToolUseFailure** | Apres l'echec d'un outil | Diagnostic, retry logic |
+| **PreToolUse** | Avant l'exécution d'un outil | Blocage de commandes dangereuses, validation |
+| **PostToolUse** | Après l'exécution réussie d'un outil | Formatting, linting, logging |
+| **PostToolUseFailure** | Après l'échec d'un outil | Diagnostic, retry logic |
 | **PermissionRequest** | Quand Claude demande une permission | Auto-approval conditionnelle |
 | **Notification** | Quand Claude envoie une notification | Desktop/Slack notification |
-| **Stop** | Quand Claude termine sa reponse | Verification de completude, forcer la continuation |
-| **SubagentSpawn** | Quand un sub-agent est cree | Logging, annonce TTS |
-| **PreCompact** | Avant la compaction du contexte | Sauvegarde de l'etat |
-| **PostCompact** | Apres la compaction | Re-injection de contexte |
-| **PreClearConversation** | Avant le clear de conversation | Backup |
+| **Stop** | Quand Claude termine sa réponse | Vérification de complétude, forcer la continuation |
+| **SubagentSpawn** | Quand un sub-agent est créé | Logging, annonce TTS |
+| **PreCompact** | Avant la compaction du contexte | Sauvegarde de l'état |
+| **PostCompact** | Après la compaction | Re-injection de contexte |
+| **PreClearConversation** | Avant le clear de conversation | Sauvegarde |
 | **SessionPause** | Quand la session est mise en pause | Sauvegarde de session |
 | **SessionResume** | Quand la session reprend | Restauration de contexte |
 
 ### Les 4 types de handlers
 
-#### 1. Command (deterministe)
+#### 1. Command (déterministe)
 \`\`\`json
 {
   "type": "command",
@@ -45,11 +45,11 @@ Les Hooks sont des **declencheurs deterministes** qui s'executent a des points p
 }
 \`\`\`
 
-#### 3. Prompt (decision LLM single-turn)
+#### 3. Prompt (décision LLM single-turn)
 \`\`\`json
 {
   "type": "prompt",
-  "prompt": "Evalue si cette commande Bash pourrait affecter l'environnement de production : $ARGUMENTS. Reponds UNIQUEMENT avec du JSON brut : {\\"decision\\": \\"allow\\"} ou {\\"decision\\": \\"block\\", \\"reason\\": \\"...\\"}",
+  "prompt": "Évalue si cette commande Bash pourrait affecter l'environnement de production : $ARGUMENTS. Réponds UNIQUEMENT avec du JSON brut : {\\"decision\\": \\"allow\\"} ou {\\"decision\\": \\"block\\", \\"reason\\": \\"...\\"}",
   "timeout": 30
 }
 \`\`\`
@@ -58,7 +58,7 @@ Les Hooks sont des **declencheurs deterministes** qui s'executent a des points p
 \`\`\`json
 {
   "type": "agent",
-  "prompt": "Verifie que des tests existent pour tous les fichiers modifies. Utilise Read, Grep et Glob.",
+  "prompt": "Vérifie que des tests existent pour tous les fichiers modifiés. Utilise Read, Grep et Glob.",
   "timeout": 60
 }
 \`\`\`
@@ -67,9 +67,9 @@ Les Hooks sont des **declencheurs deterministes** qui s'executent a des points p
 
 | Code | Comportement |
 |------|-------------|
-| **0** | Succes. Parse JSON depuis stdout |
-| **2** | Erreur bloquante. stderr renvoye a Claude comme instruction |
-| **Autre** | Erreur non-bloquante. stderr affiche en mode verbose |
+| **0** | Succès. Parse JSON depuis stdout |
+| **2** | Erreur bloquante. stderr renvoyé à Claude comme instruction |
+| **Autre** | Erreur non-bloquante. stderr affiché en mode verbose |
 
 ### JSON output (exit code 0)
 
@@ -77,7 +77,7 @@ Les Hooks sont des **declencheurs deterministes** qui s'executent a des points p
 {
   "block": true,
   "message": "Cannot edit on main branch. Create a feature branch first.",
-  "additionalContext": "Info supplementaire injectee dans le contexte de Claude"
+  "additionalContext": "Info supplémentaire injectée dans le contexte de Claude"
 }
 \`\`\`
 
@@ -125,7 +125,7 @@ Les Hooks sont des **declencheurs deterministes** qui s'executent a des points p
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "L'assistant a-t-il complete TOUTES les taches demandees et execute les tests ? Reponds UNIQUEMENT en JSON brut sans code fences : {\\"decision\\": \\"allow\\"} si tout est fait, {\\"decision\\": \\"block\\", \\"reason\\": \\"...\\"}",
+            "prompt": "L'assistant a-t-il complété TOUTES les tâches demandées et exécuté les tests ? Réponds UNIQUEMENT en JSON brut sans code fences : {\\"decision\\": \\"allow\\"} si tout est fait, {\\"decision\\": \\"block\\", \\"reason\\": \\"...\\"}",
             "timeout": 30
           }
         ]
@@ -146,7 +146,7 @@ Les Hooks sont des **declencheurs deterministes** qui s'executent a des points p
 }
 \`\`\`
 
-Les hooks async s'executent en arriere-plan sans bloquer Claude.
+Les hooks async s'exécutent en arrière-plan sans bloquer Claude.
 
 ### Variables d'environnement dans les hooks
 
@@ -158,7 +158,7 @@ Les hooks async s'executent en arriere-plan sans bloquer Claude.
 
 ### Hooks dans le frontmatter de Skills/Agents
 
-Les skills et agents peuvent declarer leurs propres hooks :
+Les skills et agents peuvent déclarer leurs propres hooks :
 
 \`\`\`yaml
 ---
@@ -179,9 +179,9 @@ hooks:
 /hooks
 \`\`\`
 
-Ouvre le gestionnaire interactif pour voir, ajouter, et supprimer des hooks sans editer les JSON.
+Ouvre le gestionnaire interactif pour voir, ajouter, et supprimer des hooks sans éditer les JSON.
 
-### Desactiver temporairement
+### Désactiver temporairement
 
 \`\`\`json
 { "disableAllHooks": true }
