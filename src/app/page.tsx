@@ -1,65 +1,100 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import Link from "next/link";
+import { sections } from "@/config/navigation";
+import { Badge } from "@/components/ui/badge";
+import { Youtube, Twitter, ArrowRight } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+    <div className="max-w-4xl mx-auto px-6 py-12 lg:py-16">
+      <div className="mb-12">
+        <Badge variant="secondary" className="mb-4">
+          Mars 2026
+        </Badge>
+        <h1 className="text-3xl lg:text-4xl font-bold tracking-tight mb-4">
+          Optimiser sa config <span className="text-primary">Claude Code</span>
+        </h1>
+        <p className="text-lg text-muted-foreground max-w-2xl">
+          Documentation complète pour maîtriser Claude Code : architecture,
+          CLAUDE.md, Agents, Skills, Hooks, Settings, MCP et plus.
+        </p>
+        <p className="text-sm text-muted-foreground mt-2">
+          Par <strong>Meydeey</strong> &mdash; Le Labo IA
+        </p>
+
+        <div className="flex items-center gap-3 mt-6">
+          <Link
+            href="/architecture-configuration"
+            className={cn(
+              buttonVariants({ variant: "default" }),
+              "flex items-center gap-2",
+            )}
+          >
+            Commencer la lecture
+            <ArrowRight className="h-4 w-4" />
+          </Link>
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://www.youtube.com/@meydeey"
             target="_blank"
             rel="noopener noreferrer"
+            className={cn(
+              buttonVariants({ variant: "outline" }),
+              "flex items-center gap-2",
+            )}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+            <Youtube className="h-4 w-4 text-red-600" />
+            YouTube
           </a>
           <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://x.com/meydeey"
             target="_blank"
             rel="noopener noreferrer"
+            className={cn(
+              buttonVariants({ variant: "outline" }),
+              "flex items-center gap-2",
+            )}
           >
-            Documentation
+            <Twitter className="h-4 w-4" />
+            @meydeey
           </a>
         </div>
-      </main>
+      </div>
+
+      <h2 className="text-xl font-semibold mb-6">Table des matières</h2>
+
+      <div className="grid gap-3 sm:grid-cols-2">
+        {sections.map((section) => {
+          const Icon = section.icon;
+          return (
+            <Link
+              key={section.slug}
+              href={`/${section.slug}`}
+              className="group flex items-start gap-3 rounded-xl border border-border p-4 hover:border-primary/30 hover:bg-[var(--surface)] transition-all"
+            >
+              <div className="mt-0.5 p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                <Icon className="h-4 w-4" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-muted-foreground font-mono">
+                    {String(section.order).padStart(2, "0")}
+                  </span>
+                  <span className="font-medium text-sm group-hover:text-primary transition-colors">
+                    {section.shortTitle}
+                  </span>
+                </div>
+                <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
+                  {section.description}
+                </p>
+              </div>
+              <ArrowRight className="h-4 w-4 text-muted-foreground/40 group-hover:text-primary transition-colors mt-1 shrink-0" />
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 }
